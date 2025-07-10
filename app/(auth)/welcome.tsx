@@ -6,7 +6,7 @@ import { Image, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Swiper from "react-native-swiper";
 
-export default function WelcomeOnboarding() {
+export default function WelcomeOnboardingScreen() {
   const router = useRouter();
 
   const [activeIndex, setActiveIndex] = useState(0);
