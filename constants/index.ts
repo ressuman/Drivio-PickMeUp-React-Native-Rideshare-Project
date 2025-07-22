@@ -74,23 +74,23 @@ export const icons = {
 export const onboarding = [
   {
     id: 1,
-    title: "The perfect ride is just a tap away!",
+    title: "Your perfect ride awaits with just one tap! 🚗",
     description:
-      "Your journey begins with Ryde. Find your ideal ride effortlessly.",
+      "Experience seamless transportation at your fingertips. Whether you're heading to work, meeting friends, or exploring the city, Divio PickMeUp Rydr connects you with reliable drivers in seconds. Your journey to effortless travel starts here.",
     image: images.onboarding1,
   },
   {
     id: 2,
-    title: "Best car in your hands with Ryde",
+    title: "Premium vehicles, exceptional service 🌟",
     description:
-      "Discover the convenience of finding your perfect ride with Ryde",
+      "Step into comfort with our carefully curated fleet of vehicles. From economy to luxury, every ride is maintained to the highest standards. Our drivers are background-checked professionals committed to your safety and satisfaction.",
     image: images.onboarding2,
   },
   {
     id: 3,
-    title: "Your ride, your way. Let's go!",
+    title: "Your destination, your schedule, your way! 🎯",
     description:
-      "Enter your destination, sit back, and let us take care of the rest.",
+      "Take control of your travel experience. Set your pickup point, choose your destination, and let our intelligent system handle the rest. Enjoy transparent pricing, flexible payment options, and the peace of mind that comes with reliable service.",
     image: images.onboarding3,
   },
 ];

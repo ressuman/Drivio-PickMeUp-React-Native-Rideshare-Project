@@ -1,5 +1,6 @@
 import * as SecureStore from "expo-secure-store";
 import { Alert } from "react-native";
+import { fetchAPI } from "./fetch";
 
 export const tokenCache = {
   async getToken(key: string) {
@@ -166,6 +167,42 @@ export const handleSignUp = async (
   }
 };
 
+// Handle sign in process
+export const handleSignIn = async (
+  form,
+  signIn,
+  setActive,
+  router,
+  setErrors,
+  errors,
+) => {
+  try {
+    const signInAttempt = await signIn.create({
+      identifier: form.email,
+      password: form.password,
+    });
+
+    if (signInAttempt.status === "complete") {
+      await setActive({ session: signInAttempt.createdSessionId });
+      router.replace("/(root)/(tabs)/home");
+    } else {
+      console.error(JSON.stringify(signInAttempt, null, 2));
+      setErrors({
+        ...errors,
+        password: "Sign in failed. Please check your credentials.",
+      });
+    }
+  } catch (err) {
+    console.error(JSON.stringify(err, null, 2));
+    setErrors({
+      ...errors,
+      email:
+        err.errors?.[0]?.message ||
+        "Invalid email or password. Please try again.",
+    });
+  }
+};
+
 // Handle verification process
 export const handleVerification = async (
   signUp,
@@ -173,6 +210,7 @@ export const handleVerification = async (
   router,
   verification,
   setVerification,
+  form,
 ) => {
   try {
     // Use the code the user provided to attempt verification
@@ -183,6 +221,17 @@ export const handleVerification = async (
     // If verification was completed, set the session to active
     // and redirect the user
     if (signUpAttempt.status === "complete") {
+      // 1️⃣ Save user to backend
+      await fetchAPI("/(api)/user", {
+        method: "POST",
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          clerkId: signUpAttempt.createdUserId,
+        }),
+      });
+
+      // 2️⃣ Set session
       await setActive({ session: signUpAttempt.createdSessionId });
 
       // Show success modal first, then navigate after a delay
