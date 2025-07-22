@@ -15,11 +15,18 @@
     },
     "name": "Drivio-PickMeUp",
     "orientation": "portrait",
-    "plugins": ["expo-router"],
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "origin": "http://localhost:8081"
+        }
+      ]
+    ],
     "scheme": "myapp",
     "slug": "drivio-pickmeup",
     "splash": {
-      "backgroundColor": "#ffffff",
+      "backgroundColor": "#2686f5",
       "image": "./assets/images/splash.png",
       "resizeMode": "contain"
     },
@@ -28,7 +35,7 @@
     "web": {
       "bundler": "metro",
       "favicon": "./assets/images/favicon.png",
-      "output": "static"
+      "output": "server"
     }
   }
 }
